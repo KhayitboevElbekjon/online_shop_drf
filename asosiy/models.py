@@ -19,6 +19,6 @@ class Mahsulot(models.Model):
 class Izoh(models.Model):
     profil_fk=models.ForeignKey(Profil,on_delete=models.CASCADE)
     matn=models.TextField()
-    reyting=models.CharField(max_length=25)
+    reyting=models.SmallIntegerField(max_length=25)
     mahsulot_fk=models.ForeignKey(Mahsulot,on_delete=models.CASCADE)
     sana=models.DateTimeField()

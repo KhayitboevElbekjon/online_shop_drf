@@ -1,11 +1,16 @@
 #
 # from django.contrib import admin
-# from django.urls import path,include
-# from .views import *
+from django.urls import path,include
+from .views import *
 #
-# from rest_framework.routers import DefaultRouter
-# router=DefaultRouter()
-# router.register('bolim',BolimAPISerializer)
+from rest_framework.routers import DefaultRouter
+router=DefaultRouter()
+router.register('mahsulot',MahsulotAPISerializer)
 #
-# urlpatterns = [
-#     path('',include(router.urls))]
+urlpatterns = [
+    path('',BolimAPISerializer.as_view()),
+    path('bolim/<int:son>',BolimDetailView.as_view()),
+    path('izoh/',IzohAPISerializer.as_view()),
+    path('', include(router.urls)),
+
+]
