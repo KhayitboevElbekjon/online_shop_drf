@@ -48,3 +48,8 @@ class MahsulotAPISerializer(ModelViewSet):
         else:
             natija=Mahsulot.objects.filter(nom__contains=nomm)
         return natija
+class TanlanganAPIView(APIView):
+    def get(self,request,son):
+        mahsulot=Mahsulot.objects.get(id=son)
+        serializer=MahsulotSerializer(mahsulot)
+        return Response(serializer.data)

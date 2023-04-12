@@ -12,5 +12,6 @@ urlpatterns = [
     path('bolim/<int:son>',BolimDetailView.as_view()),
     path('izoh/',IzohAPISerializer.as_view()),
     path('', include(router.urls)),
+    path('bitamahsulot/<int:son>',TanlanganAPIView.as_view())
 
 ]
