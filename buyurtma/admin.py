@@ -1,3 +1,6 @@
 from django.contrib import admin
-
-# Register your models here.
+from .models import *
+admin.site.register(Tanlanganlar)
+admin.site.register(Savat)
+admin.site.register(Savatitem)
+admin.site.register(Buyurtma)

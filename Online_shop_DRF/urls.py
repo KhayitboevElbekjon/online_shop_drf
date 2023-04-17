@@ -18,6 +18,7 @@ from asosiy.views import BolimAPISerializer
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Asosiy/',include('asosiy.urls')),
-    path('Userapp/',include('userapp.urls'))
+    path('Userapp/',include('userapp.urls')),
+    path('buyurtma/',include('buyurtma.urls')),
     # path('',include(router.urls))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
