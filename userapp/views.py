@@ -30,10 +30,25 @@ class ProfilCreateAPI(APIView):
 
 class TanlanganProfilView(APIView):
     def tanlanganprofil(self,request,pk):
-        profil=Profil.objects.get(id=pk)
-        serializer=ProfilSerialzier(profil)
-        return Response(serializer.data)
-
+        if request.user.is_authenticated:
+            profil=Profil.objects.get(id=pk)
+            serializer=ProfilSerialzier(profil)
+            return Response(serializer.data)
+        return Response({'xabar': 'login qilinmagan'})
+    def delete(self,request,pk):
+        if request.user.is_authenticated:
+            Profil.objects.get(id=pk).delete()
+            return Response({'xabar':"Profil o'chirilldi"},status=status.HTTP_200_OK)
+        return Response({'xabar': 'login qilinmagan'})
+    def put(self,request,pk):
+        if request.user.is_authenticated:
+            profil = Profil.objects.get(id=pk)
+            serializer=ProfilSerialzier(profil,data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            else:
+                Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 class LoginApiView(APIView):
     def post(self,request):
         serializer=LoginUserSerializer(data=request.data)
